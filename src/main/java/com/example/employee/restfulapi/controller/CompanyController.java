@@ -1,6 +1,7 @@
 package com.example.employee.restfulapi.controller;
 
 import com.example.employee.restfulapi.entity.Company;
+import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,5 +46,10 @@ public class CompanyController {
     @DeleteMapping("{companyId}")
     String deleteCompany(@PathVariable long companyId) {
         return mCompanyService.deleteCompany(companyId);
+    }
+
+    @GetMapping("{companyId}/employees")
+    List<Employee> getEmployeesByCompanyId(@PathVariable long companyId) {
+        return mCompanyService.getEmployeesByCompanyId(companyId);
     }
 }

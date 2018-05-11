@@ -1,6 +1,7 @@
 package com.example.employee.restfulapi.service;
 
 import com.example.employee.restfulapi.entity.Company;
+import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.exception.ObjectAlreadyExistedException;
 import com.example.employee.restfulapi.exception.ObjectNotFoundException;
 import com.example.employee.restfulapi.repository.CompanyRepository;
@@ -9,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class CompanyService implements ICompanyService {
@@ -60,5 +63,15 @@ public class CompanyService implements ICompanyService {
         }
         companyRepository.delete(companyId);
         return "delete success";
+    }
+
+    @Override
+    public List<Employee> getEmployeesByCompanyId(long companyId) {
+        Company company = companyRepository.findOne(companyId);
+        if (company == null) {
+            throw new ObjectNotFoundException(companyId);
+        }
+        Set<Employee> employees = company.getEmployees();
+        return new ArrayList<Employee>(employees);
     }
 }

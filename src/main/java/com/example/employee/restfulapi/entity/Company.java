@@ -47,4 +47,12 @@ public class Company {
     public void setEmployeesNumber(Integer employeesNumber) {
         this.employeesNumber = employeesNumber;
     }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
 }
