@@ -47,8 +47,8 @@ public class EmployeeController {
     }
 
     @PutMapping("{employeeId}")
-    Employee putEmployee(@RequestBody Employee input) {
-        return mEmployeeService.putEmployee(input);
+    Employee putEmployee(@PathVariable long employeeId, @RequestBody Employee input) {
+        return mEmployeeService.putEmployee(employeeId, input);
     }
 
     @DeleteMapping("{employeeId}")

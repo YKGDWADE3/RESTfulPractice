@@ -49,10 +49,11 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Employee putEmployee(Employee employee) {
-        if (employeeRepository.findOne(employee.getId()) == null) {
-            throw new ObjectNotFoundException(employee.getId());
+    public Employee putEmployee(long employeeId, Employee employee) {
+        if (employeeRepository.findOne(employeeId) == null) {
+            throw new ObjectNotFoundException(employeeId);
         }
+        employee.setId(employeeId);
         return employeeRepository.saveAndFlush(employee);
     }
 

@@ -16,7 +16,7 @@ public interface IEmployeeService {
 
     List<Employee> getEmployeeListByGender(String gender);
 
-    Employee putEmployee(Employee employee);
+    Employee putEmployee(long id,Employee employee);
 
     String deleteEmployee(long employeeId);
 }
