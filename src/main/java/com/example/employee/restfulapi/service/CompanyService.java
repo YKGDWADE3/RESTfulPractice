@@ -43,4 +43,13 @@ public class CompanyService implements ICompanyService {
         }
         return companyRepository.save(company);
     }
+
+    @Override
+    public Company putCompany(long companyId, Company company) {
+        if (companyRepository.findOne(companyId) == null) {
+            throw new ObjectNotFoundException(companyId);
+        }
+        company.setId(companyId);
+        return companyRepository.saveAndFlush(company);
+    }
 }

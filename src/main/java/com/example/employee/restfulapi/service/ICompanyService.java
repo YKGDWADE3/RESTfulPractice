@@ -14,4 +14,6 @@ public interface ICompanyService {
 
     Company saveCompany(Company company);
 
+    Company putCompany(long companyId, Company company);
+
 }

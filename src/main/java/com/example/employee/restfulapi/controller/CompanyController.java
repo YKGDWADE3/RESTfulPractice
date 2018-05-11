@@ -36,4 +36,9 @@ public class CompanyController {
     Company saveCompany(@RequestBody Company company) {
         return mCompanyService.saveCompany(company);
     }
+
+    @PutMapping("{companyId}")
+    Company putCompany(@PathVariable long companyId, @RequestBody Company company) {
+        return mCompanyService.putCompany(companyId, company);
+    }
 }
