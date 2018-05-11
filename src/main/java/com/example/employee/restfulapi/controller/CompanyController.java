@@ -4,6 +4,7 @@ import com.example.employee.restfulapi.entity.Company;
 import com.example.employee.restfulapi.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +16,14 @@ public class CompanyController {
     //在此处完成Company API
     @Autowired
     ICompanyService mCompanyService;
+
     @GetMapping
     List<Company> getCompanies() {
         return mCompanyService.getCompanyList();
+    }
+
+    @GetMapping("{companyId}")
+    Company getCompany(@PathVariable long companyId) {
+        return mCompanyService.getCompany(companyId);
     }
 }

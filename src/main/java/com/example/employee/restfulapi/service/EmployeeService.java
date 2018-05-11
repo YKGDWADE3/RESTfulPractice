@@ -1,8 +1,8 @@
 package com.example.employee.restfulapi.service;
 
 import com.example.employee.restfulapi.entity.Employee;
-import com.example.employee.restfulapi.exception.EmployeeAlreadyExistedException;
-import com.example.employee.restfulapi.exception.EmployeeNotFoundException;
+import com.example.employee.restfulapi.exception.ObjectAlreadyExistedException;
+import com.example.employee.restfulapi.exception.ObjectNotFoundException;
 import com.example.employee.restfulapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Employee saveEmployee(Employee employee) {
         if (employeeRepository.findOne(employee.getId()) != null) {
-            throw new EmployeeAlreadyExistedException(employee.getId());
+            throw new ObjectAlreadyExistedException(employee.getId());
         }
         return employeeRepository.save(employee);
     }
@@ -33,7 +33,7 @@ public class EmployeeService implements IEmployeeService {
     public Employee getEmployee(long id) {
         Employee employee = employeeRepository.findOne(id);
         if (employee == null) {
-            throw new EmployeeNotFoundException(id);
+            throw new ObjectNotFoundException(id);
         }
         return employee;
     }
@@ -51,7 +51,7 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Employee putEmployee(Employee employee) {
         if (employeeRepository.findOne(employee.getId()) == null) {
-            throw new EmployeeNotFoundException(employee.getId());
+            throw new ObjectNotFoundException(employee.getId());
         }
         return employeeRepository.saveAndFlush(employee);
     }
@@ -59,7 +59,7 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public String deleteEmployee(long employeeId) {
         if (employeeRepository.findOne(employeeId) == null) {
-            throw new EmployeeNotFoundException(employeeId);
+            throw new ObjectNotFoundException(employeeId);
         }
         employeeRepository.delete(employeeId);
         return "delete success";

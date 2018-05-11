@@ -7,6 +7,6 @@ import java.util.List;
 public interface ICompanyService {
     List<Company> getCompanyList();
 
-
+    Company getCompany(long companyId);
 
 }
