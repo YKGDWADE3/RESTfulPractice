@@ -12,4 +12,6 @@ public interface ICompanyService {
 
     Page<Company> getCompaniesByPageAndPageSize(int page, int pageSize);
 
+    Company saveCompany(Company company);
+
 }

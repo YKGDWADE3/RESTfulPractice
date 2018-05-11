@@ -1,6 +1,7 @@
 package com.example.employee.restfulapi.service;
 
 import com.example.employee.restfulapi.entity.Company;
+import com.example.employee.restfulapi.exception.ObjectAlreadyExistedException;
 import com.example.employee.restfulapi.exception.ObjectNotFoundException;
 import com.example.employee.restfulapi.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,13 @@ public class CompanyService implements ICompanyService {
     @Override
     public Page<Company> getCompaniesByPageAndPageSize(int page, int pageSize) {
         return companyRepository.findAll(new PageRequest(page, pageSize));
+    }
+
+    @Override
+    public Company saveCompany(Company company) {
+        if (companyRepository.findOne(company.getId()) != null) {
+            throw new ObjectAlreadyExistedException(company.getId());
+        }
+        return companyRepository.save(company);
     }
 }
