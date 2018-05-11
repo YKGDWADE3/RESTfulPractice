@@ -3,6 +3,7 @@ package com.example.employee.restfulapi.controller;
 import com.example.employee.restfulapi.entity.Company;
 import com.example.employee.restfulapi.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +26,10 @@ public class CompanyController {
     @GetMapping("{companyId}")
     Company getCompany(@PathVariable long companyId) {
         return mCompanyService.getCompany(companyId);
+    }
+
+    @GetMapping("page/{pageNumber}/pageSize/{pageSizeNumber}")
+    Page<Company> getCompaniesByPage(@PathVariable int pageNumber, @PathVariable int pageSizeNumber) {
+        return mCompanyService.getCompaniesByPageAndPageSize(pageNumber, pageSizeNumber);
     }
 }
