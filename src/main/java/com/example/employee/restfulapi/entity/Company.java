@@ -12,6 +12,9 @@ public class Company {
     private Long id;
     private String companyName;
     private Integer employeesNumber;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyId")
+    private Set<Employee> employees;
 
     public Company() {
     }
