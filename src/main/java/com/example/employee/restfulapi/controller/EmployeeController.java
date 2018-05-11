@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +49,11 @@ public class EmployeeController {
     @PutMapping("{employeeId}")
     Employee putEmployee(@RequestBody Employee input) {
         return mEmployeeService.putEmployee(input);
+    }
+
+    @DeleteMapping("{employeeId}")
+    String deleteEmployee(@PathVariable long employeeId) {
+        return mEmployeeService.deleteEmployee(employeeId);
     }
 
 

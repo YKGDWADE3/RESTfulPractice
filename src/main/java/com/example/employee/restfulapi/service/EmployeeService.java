@@ -57,11 +57,12 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public void deleteEmployee(long employeeId) {
+    public String deleteEmployee(long employeeId) {
         if (employeeRepository.findOne(employeeId) == null) {
             throw new EmployeeNotFoundException(employeeId);
         }
         employeeRepository.delete(employeeId);
+        return "delete success";
     }
 
 
