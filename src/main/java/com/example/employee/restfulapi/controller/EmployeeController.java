@@ -3,8 +3,6 @@ package com.example.employee.restfulapi.controller;
 import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +35,11 @@ public class EmployeeController {
     List<Employee> findByGender(@PathVariable String gender){
         return employeeRepository.findAllByGender(gender);
     }
+
+    @PostMapping
+    Employee createEmployee(@RequestBody Employee input){
+        return employeeRepository.save(input);
+    }
+    
 
 }
