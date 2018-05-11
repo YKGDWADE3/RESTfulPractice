@@ -16,4 +16,6 @@ public interface ICompanyService {
 
     Company putCompany(long companyId, Company company);
 
+    String deleteCompany(long companyId);
+
 }

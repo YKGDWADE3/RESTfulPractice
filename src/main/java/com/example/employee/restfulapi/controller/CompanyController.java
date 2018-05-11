@@ -41,4 +41,9 @@ public class CompanyController {
     Company putCompany(@PathVariable long companyId, @RequestBody Company company) {
         return mCompanyService.putCompany(companyId, company);
     }
+
+    @DeleteMapping("{companyId}")
+    String deleteCompany(@PathVariable long companyId) {
+        return mCompanyService.deleteCompany(companyId);
+    }
 }

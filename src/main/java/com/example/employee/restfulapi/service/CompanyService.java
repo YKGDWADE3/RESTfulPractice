@@ -52,4 +52,13 @@ public class CompanyService implements ICompanyService {
         company.setId(companyId);
         return companyRepository.saveAndFlush(company);
     }
+
+    @Override
+    public String deleteCompany(long companyId) {
+        if (companyRepository.findOne(companyId) == null) {
+            throw new ObjectNotFoundException(companyId);
+        }
+        companyRepository.delete(companyId);
+        return "delete success";
+    }
 }
